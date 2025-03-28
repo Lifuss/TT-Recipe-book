@@ -25,13 +25,12 @@ const getRecipes = ctrlWrapper(async (req: Request, res: Response) => {
     endpoint = `/search.php?s=${name}`;
   }
 
-  console.log(endpoint);
   const { data } = await recipeInstance.get(endpoint);
 
-  if (data.meals === null) {
+  if (data.meals === null || data.meals === undefined) {
     res.status(200).json({
-      message: `meals with name ${s} not found `,
-      recipes: data.meals,
+      message: `meals with such filter not found `,
+      recipes: [],
     });
   }
   res.status(200).json({ message: 'success', recipes: data.meals });

@@ -7,7 +7,7 @@ const getRecipeByID = ctrlWrapper(async (req: Request, res: Response) => {
 
   const { data } = await recipeInstance.get(`/lookup.php?i=${id}`);
 
-  res.status(200).json({ message: 'success', recipe: data });
+  res.status(200).json({ message: 'success', recipe: data.meals });
 });
 
 export default getRecipeByID;
